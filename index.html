@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Popular Gemology</title>
+
+    <meta name="description" content="Short talk about ruby gems">
+    <meta name="author" content="Enrique García Cota">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/kikito.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/vs.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section data-markdown data-separator="\*\*\*">
+          <script type="text/template">
+
+<!-- .slide: data-background="./img/title.jpg" -->
+
+# Popular Gemology
+
+<div class="subtitle">
+  <p><small>Enrique García Cota (kikito)</small></p>
+  <p><small><a href="http://www.madridrb.com/events/septiembre-2018-454">Madrid.rb 2018</a></small></p>
+</blockquote>
+
+***
+
+<!-- .slide: data-background="#008AB8" -->
+
+https://kikito.github.io/popular-gemology
+
+***
+
+<!-- .slide: data-background="#008AB8" -->
+
+## I. Intro
+## II. The ugly
+## III. The good
+## IV. The bad
+## V. Conclusion
+
+***
+
+<!-- .slide: data-background="./img/intro.png" -->
+
+# I. Intro
+
+***
+
+<!-- .slide: data-background="#ABE092" -->
+
+## Where?
+
+***
+
+<figure class="stretch">
+  <img src="./img/ruby-toolbox.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/ruby-toolbox-csv.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/ruby-toolbox-catalog.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/smarter-csv.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/smarter-csv-highlights.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/decide-madrid.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/consul.png" class="stretch plain" height="100%">
+</figure>
+
+***
+<!-- .slide: data-background="#fedf2d" -->
+
+<figure class="stretch">
+  <img src="./img/thegoodthebadtheugly.jpg" class="stretch plain" height="100%">
+</figure>
+
+***
+<!-- .slide: data-background="./img/theugly.png" -->
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+## II. The ugly
+
+***
+
+<figure class="stretch">
+  <img src="./img/debate-with-vote.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/acts-as-taggable-on-github.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+`config/initializers/acts_as_taggable_on.rb`
+<figure class="stretch">
+  <img src="./img/acts-as-taggable-on-init-1.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+`config/initializers/acts_as_taggable_on.rb`
+<figure class="stretch">
+  <img src="./img/acts-as-taggable-on-init-2.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+`config/initializers/acts_as_taggable_on.rb`
+<figure class="stretch">
+  <img src="./img/acts-as-taggable-on-init-3.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/debate-with-vote.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/comments-with-vote.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/acts_as_votable-github.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+``` ruby
+@post.liked_by @user3
+@post.vote_by :voter => @user5, :vote => 'like'
+@post.get_upvotes
+
+@user.likes @comment2
+@user.up_votes @comment2
+@user.voted_for? @comment1
+```
+
+***
+
+<!-- .slide: data-background="#ABE092" -->
+
+> DSL
+
+***
+
+<!-- .slide: data-background="#ABE092" -->
+
+> Domain-Specific Language
+
+***
+
+<!-- .slide: data-background="#ABE092" -->
+
+> DSL ≠ Reads like English
+
+***
+
+``` ruby
+@post.liked_by @user3
+@post.vote_by :voter => @user5, :vote => 'like'
+@post.get_upvotes
+
+@user.likes @comment2
+@user.up_votes @comment2
+@user.voted_for? @comment1
+
+```
+
+***
+
+``` ruby
+Vote.create(@user3, @post)
+Vote.create(@user5, @post, :vote => 'like')
+Vote.by_votable(@post)
+
+Vote.create(@user, @comment2)
+Vote.create(@user, @comment2)
+Vote.exists?(@user, @comment1)
+```
+
+***
+
+`config/initializers/vote_extensions.rb`
+<figure class="stretch">
+  <img src="./img/acts_as_votable_init.png" class="stretch plain" height="100%">
+</figure>
+
+
+***
+
+
+<!-- .slide: data-background="./img/thegood.jpg" -->
+
+## III. The Good
+
+***
+
+<figure class="stretch">
+  <img src="./img/comments-with-vote.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
+  <img src="./img/acts_as_flaggable_github.png" class="stretch plain" height="100%">
+</figure>
+
+
+***
+
+# ❗️
+
+***
+
+`consul/app/models/flag.rb`
+<figure class="stretch">
+  <img src="./img/flag_model.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+``` ruby
+Flag.flag(user, flaggable)
+
+Flag.unflag(user, flaggable)
+
+Flag.flagged?(user, flaggable)
+
+```
+
+***
+
+`consul/app/models/concerns/flaggable.rb`
+<figure class="stretch">
+  <img src="./img/flaggable.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+``` ruby
+has_many :flags, as: :flaggable
+scope :flagged, -> { where("flags_count > 0") }
+```
+
+***
+
+``` ruby
+# consul/app/models/user.rb
+class User < ActiveRecord::Base
+...
+has_many :flags
+
+```
+
+***
+
+# 👍
+
+***
+
+<!-- .slide: data-background="./img/core.jpg" -->
+
+## Core business
+
+***
+
+<!-- .slide: data-background="./img/core.jpg" -->
+
+## Core business
+
+### 1. Highly Specific
+### 2. Change over time
+
+➡ "Monkeypatching" of gems
+
+***
+
+
+<!-- .slide: data-background="./img/thebad.jpg" -->
+
+## IV.
+### The Bad
+
+
+***
+
+<figure class="stretch">
+  <img src="./img/paranoia-github.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+``` ruby
+@user.delete # not really deleted, just hidden
+
+Users.all # does not include @user
+
+Users.with_deleted.all # includes @user
+
+
+
+.
+```
+
+***
+
+``` ruby
+@user.delete # not really deleted, just hidden
+
+Users.all # does not include @user
+
+Users.with_deleted.all # includes @user
+
+Users.unscoped.all # includes @user
+
+Users.find_by_sql("SELECT * from users") # includes @user
+```
+
+***
+
+<figure class="stretch">
+  <img src="./img/construction.jpg" class="stretch plain" height="100%">
+</figure>
+
+***
+
+
+``` ruby
+@user = User.create(username: "Pepe") -> ok
+
+...
+
+User.where(username: "Pepe").delete -> ok
+
+...
+
+@user2 = User.create(username: "Pepe") -> uniqueness
+
+...
+
+@user.undelete
+```
+
+***
+
+<figure class="stretch">
+  <img src="./img/paranoia-github.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<!-- .slide: data-background="#ABE092" -->
+
+> <small>paranoia has some surprising behaviour (like overriding ActiveRecord's `delete` and `destroy`) and is not recommended for new projects.</small>
+
+***
+
+
+`consul/lib/acts_as_paranoid_aliases.rb`
+<figure class="stretch">
+  <img src="./img/paranoid_aliases.png" class="stretch plain" height="100%">
+</figure>
+
+
+***
+
+<!-- .slide: data-background="./img/conclusion.jpg" -->
+
+# V. Conclusion
+
+***
+
+### Don't use gems
+
+***
+
+### Don't use gems
+
+* unmaintained / untested
+
+***
+
+### Don't use gems
+
+* unmaintained / untested
+* for Core Businesses
+
+***
+
+### Don't use gems
+
+* unmaintained / untested
+* for Core Businesses
+* for unclear features
+
+***
+
+### Don't use gems
+
+* unmaintained / untested
+* for Core Businesses
+* for unclear features
+* when they break other gems / rails
+
+***
+
+### Don't use gems
+
+* unmaintained / untested
+* for Core Businesses
+* for unclear features
+* when they break other gems / rails
+* with lousy APIs
+
+***
+
+<!-- .slide: data-background="./img/questions.png" -->
+
+# ¿Questions?
+
+##### Enrique García Cota / [@otikik](https://twitter.com/otikik) / [kikito](https://github.com/kikito)
+
+***
+
+<!-- .slide: data-background="./img/thank-you.gif" -->
+
+# Thank you!
+
+          </script>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+
+        width: 960,
+        height: 700,
+
+        margin: 0.1,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+        maxScale: 1,
+
+        center: true,
+
+        theme: 'kikito',
+        transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+        transitionSpeed: 'fast',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return true; }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
