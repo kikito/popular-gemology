@@ -103,6 +103,19 @@ https://kikito.github.io/popular-gemology
 ***
 
 <figure class="stretch">
+  <img src="./img/rubygems-search.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+
+<figure class="stretch">
+  <img src="./img/github-search.png" class="stretch plain" height="100%">
+</figure>
+
+***
+
+<figure class="stretch">
   <img src="./img/smarter-csv.png" class="stretch plain" height="100%">
 </figure>
 
@@ -202,37 +215,6 @@ https://kikito.github.io/popular-gemology
 
 ***
 
-<!-- .slide: data-background="#ABE092" -->
-
-> DSL
-
-***
-
-<!-- .slide: data-background="#ABE092" -->
-
-> Domain-Specific Language
-
-***
-
-<!-- .slide: data-background="#ABE092" -->
-
-> DSL ≠ Reads like English
-
-***
-
-``` ruby
-@post.liked_by @user3
-@post.vote_by :voter => @user5, :vote => 'like'
-@post.get_upvotes
-
-@user.likes @comment2
-@user.up_votes @comment2
-@user.voted_for? @comment1
-
-```
-
-***
-
 ``` ruby
 Vote.create(@user3, @post)
 Vote.create(@user5, @post, :vote => 'like')
@@ -303,8 +285,31 @@ Flag.flagged?(user, flaggable)
 ***
 
 ``` ruby
-has_many :flags, as: :flaggable
-scope :flagged, -> { where("flags_count > 0") }
+# consul/app/models/comment.rb
+Class Comment < ActiveRecord::Base
+  ...
+  include Flaggable
+end
+```
+
+***
+
+``` ruby
+# consul/app/models/comment.rb
+Class Comment < ActiveRecord::Base
+  ...
+  has_many :flags, as: :flaggable
+  scope :flagged, -> { where("flags_count > 0") }
+
+  def ignored_flag?
+    ...
+  end
+
+  def ignore_flag
+    ...
+  end
+end
+
 ```
 
 ***
@@ -335,6 +340,7 @@ has_many :flags
 
 ### 1. Highly Specific
 ### 2. Change over time
+### 3. Ownership
 
 ➡ "Monkeypatching" of gems
 
@@ -346,6 +352,11 @@ has_many :flags
 ## IV.
 ### The Bad
 
+***
+
+<!-- .slide: data-background="#222233" -->
+
+# Erase nothing
 
 ***
 
